@@ -1,0 +1,528 @@
+{
+	"info": {
+		"_postman_id": "naxum-tsa-backend",
+		"name": "Naxum TSA Backend",
+		"description": "API collection for Naxum TSA Backend - Commission Report and Top Distributors",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Task 1 - Commission Report",
+			"item": [
+				{
+					"name": "Get All Orders (Default)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"]
+						},
+						"description": "Get all orders with commission details (default pagination)"
+					}
+				},
+				{
+					"name": "Filter by Invoice - ABC4170 ($6.00)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?invoice=ABC4170",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "invoice",
+									"value": "ABC4170"
+								}
+							]
+						},
+						"description": "Test case: ABC4170 => $6.00 commission"
+					}
+				},
+				{
+					"name": "Filter by Invoice - ABC6931 ($37.20)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?invoice=ABC6931",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "invoice",
+									"value": "ABC6931"
+								}
+							]
+						},
+						"description": "Test case: ABC6931 => $37.20 commission"
+					}
+				},
+				{
+					"name": "Filter by Invoice - ABC23352 ($27.60)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?invoice=ABC23352",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "invoice",
+									"value": "ABC23352"
+								}
+							]
+						},
+						"description": "Test case: ABC23352 => $27.60 commission"
+					}
+				},
+				{
+					"name": "Filter by Invoice - ABC3010 ($0)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?invoice=ABC3010",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "invoice",
+									"value": "ABC3010"
+								}
+							]
+						},
+						"description": "Test case: ABC3010 => $0 commission (no distributor)"
+					}
+				},
+				{
+					"name": "Filter by Invoice - ABC19323 ($0)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?invoice=ABC19323",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "invoice",
+									"value": "ABC19323"
+								}
+							]
+						},
+						"description": "Test case: ABC19323 => $0 commission (purchaser not a customer)"
+					}
+				},
+				{
+					"name": "Filter by Distributor Name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?distributor=Demario",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "distributor",
+									"value": "Demario"
+								}
+							]
+						},
+						"description": "Filter by distributor first name"
+					}
+				},
+				{
+					"name": "Filter by Distributor ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?distributor=25944",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "distributor",
+									"value": "25944"
+								}
+							]
+						},
+						"description": "Filter by distributor ID (Demario Purdy)"
+					}
+				},
+				{
+					"name": "Filter by Date Range",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?date_from=2020-01-01&date_to=2020-01-31",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "date_from",
+									"value": "2020-01-01"
+								},
+								{
+									"key": "date_to",
+									"value": "2020-01-31"
+								}
+							]
+						},
+						"description": "Filter orders by date range (January 2020)"
+					}
+				},
+				{
+					"name": "Filter by Date From Only",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?date_from=2020-04-01",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "date_from",
+									"value": "2020-04-01"
+								}
+							]
+						},
+						"description": "Filter orders from April 2020 onwards"
+					}
+				},
+				{
+					"name": "Filter by Date To Only",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?date_to=2020-02-29",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "date_to",
+									"value": "2020-02-29"
+								}
+							]
+						},
+						"description": "Filter orders up to February 2020"
+					}
+				},
+				{
+					"name": "Combined Filters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?distributor=Purdy&date_from=2020-01-01&date_to=2020-03-31",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "distributor",
+									"value": "Purdy"
+								},
+								{
+									"key": "date_from",
+									"value": "2020-01-01"
+								},
+								{
+									"key": "date_to",
+									"value": "2020-03-31"
+								}
+							]
+						},
+						"description": "Filter by distributor and date range combined"
+					}
+				},
+				{
+					"name": "Pagination - Page 1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?per_page=5&page=1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Get first page with 5 items per page"
+					}
+				},
+				{
+					"name": "Pagination - Page 2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report?per_page=5&page=2",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Get second page with 5 items per page"
+					}
+				},
+				{
+					"name": "Get Order Items (View Items Modal)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/commission-report/order/218463/items",
+							"host": ["{{base_url}}"],
+							"path": ["api", "commission-report", "order", "218463", "items"]
+						},
+						"description": "Get order items for order ID 218463 (ABC4170)"
+					}
+				}
+			],
+			"description": "Commission Report API endpoints for Task 1"
+		},
+		{
+			"name": "Task 2 - Top Distributors",
+			"item": [
+				{
+					"name": "Get Top 200 Distributors (Default)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/top-distributors",
+							"host": ["{{base_url}}"],
+							"path": ["api", "top-distributors"]
+						},
+						"description": "Get top 200 distributors with default pagination (10 per page)"
+					}
+				},
+				{
+					"name": "Get All 200 Distributors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/top-distributors?per_page=200",
+							"host": ["{{base_url}}"],
+							"path": ["api", "top-distributors"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "200"
+								}
+							]
+						},
+						"description": "Get all top 200 distributors in one request. Expected results:\n- #1 Demario Purdy - $22,026.75\n- Floy Miller - $9,645.00\n- Loy Schamberger - $575.00"
+					}
+				},
+				{
+					"name": "Pagination - Page 1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/top-distributors?per_page=10&page=1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "top-distributors"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Get first page of top distributors"
+					}
+				},
+				{
+					"name": "Pagination - Page 2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/top-distributors?per_page=10&page=2",
+							"host": ["{{base_url}}"],
+							"path": ["api", "top-distributors"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Get second page of top distributors"
+					}
+				},
+				{
+					"name": "Pagination - Last Page",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/top-distributors?per_page=10&page=20",
+							"host": ["{{base_url}}"],
+							"path": ["api", "top-distributors"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get last page of top distributors (page 20 with 10 per page)"
+					}
+				}
+			],
+			"description": "Top Distributors API endpoints for Task 2"
+		}
+	]
+}
+
+
+
+
+
